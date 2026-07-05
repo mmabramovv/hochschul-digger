@@ -7,4 +7,9 @@ authors = [
     { name = "mmabramovv", email = "264695008+mmabramovv@users.noreply.github.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "httpx>=0.28.1",
+    "selectolax>=0.4.10",
+    "sqlmodel>=0.0.39",
+    "typer>=0.26.8",
+]
