@@ -1,9 +1,8 @@
 from sqlmodel import Field, SQLModel
-from sqlmodel.main import Undefined
 
 
 class Subject(SQLModel, table=True):
-    id: int = Field(default=Undefined, primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     curriculum: str
     name: str
     subject_type: str | None = None

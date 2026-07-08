@@ -5,8 +5,11 @@ from pathlib import Path
 from sqlmodel import SQLModel
 import typer
 
+
 from .config import engine
 from .models import *  # noqa: F403
+from .pipeline import run_pipeline
+from .util import log
 
 app = typer.Typer(help="Hochschul-Digger")
 
@@ -20,20 +23,15 @@ def init_db():
 @app.command()
 def main(
     filename: Path = typer.Argument(
-        help="File taken as input",
+        help="Verordnungstext",
         exists=True,
         file_okay=True,
         dir_okay=False,
         readable=True,
     ),
-    foo: str = typer.Option(
-        ...,
-        "--foo",
-        "-f",
-        help="Mandatory option (bar)",
-    ),
 ):
-    typer.echo(typer.style("Done!", fg=typer.colors.GREEN, bold=True))
+    run_pipeline(filename)
+    log("Imported fine")
 
 
 if __name__ == "__main__":
